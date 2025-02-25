@@ -34,8 +34,8 @@ resource "github_branch" "test_main" {
 resource "github_repository_file" "test" {
   repository          = github_repository.test.name
   branch              = "main"
-  file                = ".gitignore"
-  content             = "**/*.tfstate"
+  file                = "README.md"
+  content             = "# ${local.staging_repo_name}"
   commit_message      = "Managed by Terraform"
   commit_author       = "Terraform User"
   commit_email        = "terraform@example.com"

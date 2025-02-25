@@ -11,10 +11,6 @@ terraform {
 
 provider "github" {}
 
-locals {
-  staging_repo_name = "terraform-playground-test4"
-}
-
 import {
   to = github_repository.this
   id = "terraform-playground"
