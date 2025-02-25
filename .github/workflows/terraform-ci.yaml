@@ -9,8 +9,6 @@ on:
       - 'terraform/**.tf'
   workflow_call:
     secrets:
-      TF_STATE_USERNAME:
-        required: true
       TF_STATE_TOKEN:
         required: true
   workflow_dispatch:

@@ -25,7 +25,6 @@ jobs:
   ci:
     uses: ./.github/workflows/terraform-ci.yaml
     secrets:
-      TF_STATE_USERNAME:  ${{ github.repository }}
       TF_STATE_TOKEN:     ${{ secrets.TF_STATE_TOKEN }}
   
   config:
@@ -40,6 +39,5 @@ jobs:
       hostname:           ${{ needs.config.outputs.hostname }}
       git-sha:            ${{ needs.config.outputs.git-sha }}
     secrets:
-      TF_STATE_USERNAME:  ${{ github.repository }}
       TF_STATE_TOKEN:     ${{ secrets.TF_STATE_TOKEN }}
       TF_GITHUB_TOKEN:    ${{ secrets.TF_GITHUB_TOKEN }}
