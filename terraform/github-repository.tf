@@ -11,6 +11,12 @@ resource "github_repository" "this" {
   has_downloads        = false
   vulnerability_alerts = true
 
+  allow_merge_commit = true
+  allow_rebase_merge = true
+  allow_squash_merge = true
+
+  auto_init = false
+
   pages {
     build_type = "workflow"
     cname      = "terraform-playground.kallelilja.com"
@@ -48,6 +54,10 @@ resource "github_repository" "test" {
   has_projects         = false
   has_downloads        = false
   vulnerability_alerts = true
+
+  allow_merge_commit = true
+  allow_rebase_merge = true
+  allow_squash_merge = true
 
   auto_init = true
 
