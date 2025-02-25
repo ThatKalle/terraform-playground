@@ -26,6 +26,7 @@ jobs:
     uses: ./.github/workflows/terraform-ci.yaml
     secrets:
       TF_STATE_TOKEN:     ${{ secrets.TF_STATE_TOKEN }}
+      TF_GITHUB_TOKEN:    ${{ secrets.TF_GITHUB_TOKEN }}
   
   config:
     uses: ./.github/workflows/_config.yaml

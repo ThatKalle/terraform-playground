@@ -11,6 +11,8 @@ on:
     secrets:
       TF_STATE_TOKEN:
         required: true
+      TF_GITHUB_TOKEN:
+        required: true
   workflow_dispatch:
 
 permissions:
