@@ -31,7 +31,7 @@ jobs:
     uses: ./.github/workflows/_config.yaml
 
   deploy:
-    needs: config
+    needs: [config, ci]
     uses: ./.github/workflows/_terraform-deploy.yaml
     with:
       environment:        ${{ needs.config.outputs.github-env }}
