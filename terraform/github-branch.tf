@@ -27,10 +27,6 @@ resource "github_branch_protection" "branch_protection" {
 resource "github_branch" "test_main" {
   repository = github_repository.test.name
   branch     = "main"
-
-  lifecycle {
-    prevent_destroy = true
-  }
 }
 
 resource "github_branch_default" "test_default" {

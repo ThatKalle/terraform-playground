@@ -29,7 +29,7 @@ import {
 
 import {
   to = github_repository.test
-  id = "terraform-playground-test"
+  id = "terraform-playground-test-rename"
 }
 
 import {
