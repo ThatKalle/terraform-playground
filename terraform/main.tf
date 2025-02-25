@@ -13,7 +13,7 @@ provider "github" {}
 
 import {
   to = github_repository.this
-  id = 938767213
+  id = "terraform-playground"
 }
 
 import {
