@@ -59,7 +59,9 @@ resource "github_repository" "test" {
   allow_rebase_merge = true
   allow_squash_merge = true
 
-  auto_init = true
+  auto_init          = true
+  gitignore_template = "Terraform"
+  license_template   = "unlicense"
 
   pages {
     build_type = "legacy"

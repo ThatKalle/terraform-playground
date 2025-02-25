@@ -31,11 +31,22 @@ resource "github_branch" "test_main" {
   depends_on = [github_repository.test]
 }
 
+resource "github_repository_file" "test" {
+  repository          = github_repository.test.name
+  branch              = "main"
+  file                = ".gitignore"
+  content             = "**/*.tfstate"
+  commit_message      = "Managed by Terraform"
+  commit_author       = "Terraform User"
+  commit_email        = "terraform@example.com"
+  overwrite_on_create = true
+}
+
 resource "github_branch_default" "test_default" {
   repository = github_repository.test.name
   branch     = github_branch.test_main.branch
 
-  depends_on = [github_repository.test]
+  depends_on = [github_repository_file.test]
 }
 
 resource "github_branch_protection" "test_branch_protection" {
