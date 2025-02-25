@@ -68,7 +68,7 @@ resource "github_repository" "test" {
   }
 }
 
-resource "github_repository_topics" "repository_topics" {
+resource "github_repository_topics" "test_repository_topics" {
   repository = github_repository.test.name
   topics     = ["terraformed"]
 }
