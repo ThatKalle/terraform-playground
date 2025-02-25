@@ -53,7 +53,7 @@ resource "github_repository" "test" {
     build_type = "legacy"
     source {
       branch = "main"
-      path = "/"
+      path   = "/"
     }
   }
 
