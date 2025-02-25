@@ -1,0 +1,33 @@
+name: '🚀 HUGO - Continuous Delivery (CD)'
+
+on:
+  push:
+    branches:
+      - main
+    #   - staging
+    paths: 
+      - 'web/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    uses: ./.github/workflows/hugo-ci.yaml
+  
+  config:
+    uses: ./.github/workflows/_config.yaml
+
+  deploy:
+    needs: [config, ci]
+    uses: ./.github/workflows/_hugo-deploy.yaml
+    with:
+      environment:        ${{ needs.config.outputs.github-env }}
+      url:                ${{ needs.config.outputs.url }}
+      hostname:           ${{ needs.config.outputs.hostname }}
+      git-sha:            ${{ needs.config.outputs.git-sha }}
