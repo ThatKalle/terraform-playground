@@ -50,8 +50,11 @@ resource "github_repository" "test" {
   vulnerability_alerts = true
 
   pages {
-    build_type = "workflow"
-    cname      = ""
+    build_type = "legacy"
+    source {
+      branch = "main"
+      path = "/"
+    }
   }
 
   security_and_analysis {
