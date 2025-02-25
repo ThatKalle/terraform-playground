@@ -25,14 +25,3 @@ import {
   to = github_repository_environment.production
   id = "terraform-playground:production"
 }
-
-
-import {
-  to = github_repository.test
-  id = local.staging_repo_name
-}
-
-# import {
-#   to = github_branch.test_main
-#   id = "${local.staging_repo_name}:main"
-# }

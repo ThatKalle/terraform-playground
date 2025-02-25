@@ -22,39 +22,3 @@ resource "github_branch_protection" "branch_protection" {
   pattern                = "main"
   require_signed_commits = true
 }
-
-
-resource "github_branch" "test_main" {
-  repository = github_repository.test.name
-  branch     = "main"
-
-  depends_on = [github_repository.test]
-}
-
-resource "github_repository_file" "test" {
-  repository          = github_repository.test.name
-  branch              = "main"
-  file                = "README.md"
-  content             = "# ${local.staging_repo_name}"
-  commit_message      = "Managed by Terraform"
-  commit_author       = "Terraform User"
-  commit_email        = "terraform@example.com"
-  overwrite_on_create = true
-
-  depends_on = [github_branch.test_main]
-}
-
-resource "github_branch_default" "test_default" {
-  repository = github_repository.test.name
-  branch     = github_branch.test_main.branch
-
-  depends_on = [github_repository_file.test]
-}
-
-resource "github_branch_protection" "test_branch_protection" {
-  repository_id          = github_repository.test.name
-  pattern                = "main"
-  require_signed_commits = false
-
-  depends_on = [github_branch.test_main]
-}
