@@ -20,9 +20,9 @@ on:
         required: true
       TF_STATE_TOKEN:
         required: true
-      GITHUB_TOKEN:
+      TF_GITHUB_TOKEN:
         required: true
-      GITHUB_OWNER:
+      TF_GITHUB_OWNER:
         required: true
 
 jobs:
@@ -58,7 +58,7 @@ jobs:
           TF_STATE_USERNAME: ${{ secrets.TF_STATE_USERNAME }}
           TF_STATE_TOKEN:    ${{ secrets.TF_STATE_TOKEN }}
           GITHUB_TOKEN:      ${{ secrets.TF_GITHUB_TOKEN }}
-          GITHUB_OWNER:      ${{ secrets.GITHUB_OWNER }}
+          GITHUB_OWNER:      ${{ secrets.TF_GITHUB_OWNER }}
 
       - name: Terraform Apply
         id: terraform_Apply
@@ -68,4 +68,4 @@ jobs:
           TF_STATE_USERNAME: ${{ secrets.TF_STATE_USERNAME }}
           TF_STATE_TOKEN:    ${{ secrets.TF_STATE_TOKEN }}
           GITHUB_TOKEN:      ${{ secrets.TF_GITHUB_TOKEN }}
-          GITHUB_OWNER:      ${{ secrets.GITHUB_OWNER }}
+          GITHUB_OWNER:      ${{ secrets.TF_GITHUB_OWNER }}

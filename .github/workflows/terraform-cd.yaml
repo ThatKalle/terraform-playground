@@ -39,5 +39,5 @@ jobs:
     secrets:
       TF_STATE_USERNAME:  ${{ github.repository }}
       TF_STATE_TOKEN:     ${{ secrets.TF_STATE_TOKEN }}
-      GITHUB_TOKEN:       ${{ secrets.TF_GITHUB_TOKEN }}
-      GITHUB_OWNER:       ${{ github.repository_owner }}
+      TF_GITHUB_TOKEN:    ${{ secrets.TF_GITHUB_TOKEN }}
+      TF_GITHUB_OWNER:    ${{ github.repository_owner }}
