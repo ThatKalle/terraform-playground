@@ -24,13 +24,16 @@ concurrency:
 jobs:
   ci:
     uses: ./.github/workflows/terraform-ci.yaml
+    secrets:
+      TF_STATE_USERNAME:  ${{ github.repository }}
+      TF_STATE_TOKEN:     ${{ secrets.TF_STATE_TOKEN }}
   
   config:
     uses: ./.github/workflows/_config.yaml
 
   deploy:
     needs: config
-    uses: ./.github/workflows/_terrafrom-deploy.yaml
+    uses: ./.github/workflows/_terraform-deploy.yaml
     with:
       environment:        ${{ needs.config.outputs.github-env }}
       url:                ${{ needs.config.outputs.url }}
@@ -40,4 +43,3 @@ jobs:
       TF_STATE_USERNAME:  ${{ github.repository }}
       TF_STATE_TOKEN:     ${{ secrets.TF_STATE_TOKEN }}
       TF_GITHUB_TOKEN:    ${{ secrets.TF_GITHUB_TOKEN }}
-      TF_GITHUB_OWNER:    ${{ github.repository_owner }}

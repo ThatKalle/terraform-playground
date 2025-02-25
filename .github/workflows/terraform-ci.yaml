@@ -8,6 +8,11 @@ on:
     paths: 
       - 'terraform/**.tf'
   workflow_call:
+    secrets:
+      TF_STATE_USERNAME:
+        required: true
+      TF_STATE_TOKEN:
+        required: true
   workflow_dispatch:
 
 permissions:
@@ -34,10 +39,8 @@ jobs:
         id: terraform_init
         run: |
           terraform init \
-           -backend-config="username=$TF_STATE_USERNAME" \
            -backend-config="password=$TF_STATE_TOKEN"
         env:
-          TF_STATE_USERNAME: ${{ github.repository }}
           TF_STATE_TOKEN: ${{ secrets.TF_STATE_TOKEN }}
       
       - name: Terraform Validate
@@ -71,8 +74,7 @@ jobs:
       - name: Terraform Plan
         id: terraform_plan
         run: terraform plan -input=false
-        env:
-          TF_STATE_USERNAME: ${{ github.repository }}
-          TF_STATE_TOKEN:    ${{ secrets.TF_STATE_TOKEN }}
-          GITHUB_TOKEN:      ${{ secrets.TF_GITHUB_TOKEN }}
-          GITHUB_OWNER:      ${{ github.repository_owner }}
+        # env:
+        #   TF_STATE_TOKEN:    ${{ secrets.TF_STATE_TOKEN }}
+        #   GITHUB_TOKEN:      ${{ secrets.TF_GITHUB_TOKEN }}
+        #   GITHUB_OWNER:      ${{ github.repository_owner }}

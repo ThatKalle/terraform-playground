@@ -22,8 +22,6 @@ on:
         required: true
       TF_GITHUB_TOKEN:
         required: true
-      TF_GITHUB_OWNER:
-        required: true
 
 jobs:
   terraform-apply:
@@ -45,7 +43,6 @@ jobs:
         id: terraform_init
         run: |
           terraform init \
-          -backend-config="username=$TF_STATE_USERNAME" \
           -backend-config="password=$TF_STATE_TOKEN"
         env:
           TF_STATE_USERNAME: ${{ secrets.TF_STATE_USERNAME }}
@@ -58,7 +55,7 @@ jobs:
           TF_STATE_USERNAME: ${{ secrets.TF_STATE_USERNAME }}
           TF_STATE_TOKEN:    ${{ secrets.TF_STATE_TOKEN }}
           GITHUB_TOKEN:      ${{ secrets.TF_GITHUB_TOKEN }}
-          GITHUB_OWNER:      ${{ secrets.TF_GITHUB_OWNER }}
+
 
       - name: Terraform Apply
         id: terraform_Apply
@@ -68,4 +65,4 @@ jobs:
           TF_STATE_USERNAME: ${{ secrets.TF_STATE_USERNAME }}
           TF_STATE_TOKEN:    ${{ secrets.TF_STATE_TOKEN }}
           GITHUB_TOKEN:      ${{ secrets.TF_GITHUB_TOKEN }}
-          GITHUB_OWNER:      ${{ secrets.TF_GITHUB_OWNER }}
+
