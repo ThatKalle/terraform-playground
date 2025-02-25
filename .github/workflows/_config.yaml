@@ -1,10 +1,10 @@
 name: _config
 
 env:
-  prod-domain:  kallelilja.com
+  prod-domain:  terraform-playground.kallelilja.com
   prod-branch:  'refs/heads/main'
 
-  staging-domain:  staging.kallelilja.com
+  staging-domain:  staging.terraform-playground.kallelilja.com
   staging-branch:  'refs/heads/staging'
 
   url-format:  'https://{0}/'
