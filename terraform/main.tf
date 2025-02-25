@@ -25,3 +25,14 @@ import {
   to = github_repository_environment.production
   id = "terraform-playground:production"
 }
+
+
+import {
+  to = github_repository.test
+  id = "terraform-playground-test"
+}
+
+import {
+  to = github_branch.test_main
+  id = "terraform-playground-test:main"
+}
