@@ -1,0 +1,43 @@
+name: '🚀 Terraform - Continuous Delivery (CD)'
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+    paths: 
+      - 'terraform/**.tf'
+  workflow_dispatch:
+    inputs:
+      do-apply:
+        description: Perform `terraform apply` command?
+        type: boolean
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    uses: ./.github/workflows/terraform-ci.yaml
+  
+  config:
+    uses: ./.github/workflows/_config.yaml
+
+  deploy:
+    needs: config
+    uses: ./.github/workflows/_terrafrom-deploy.yaml
+    with:
+      environment:        ${{ needs.config.outputs.github-env }}
+      url:                ${{ needs.config.outputs.url }}
+      hostname:           ${{ needs.config.outputs.hostname }}
+      git-sha:            ${{ needs.config.outputs.git-sha }}
+    secrets:
+      TF_STATE_USERNAME:  ${{ github.repository }}
+      TF_STATE_TOKEN:     ${{ secrets.TF_STATE_TOKEN }}
+      GITHUB_TOKEN:       ${{ secrets.TF_GITHUB_TOKEN }}
+      GITHUB_OWNER:       ${{ github.repository_owner }}

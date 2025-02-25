@@ -1,0 +1,66 @@
+name: _config
+
+env:
+  prod-domain:  kallelilja.com
+  prod-branch:  'refs/heads/main'
+
+  staging-domain:  staging.kallelilja.com
+  staging-branch:  'refs/heads/staging'
+
+  url-format:  'https://{0}/'
+
+on:
+  workflow_call:
+    outputs:
+      github-env:
+        description: 'GitHub Environment for deployment'
+        value: ${{ jobs.setup-variables.outputs.github-env }}
+      url:
+        description: 'The URL used for e2e testing'
+        value: ${{ jobs.setup-variables.outputs.url }}
+      hostname:
+        description: 'Hostname for ingress configuration'
+        value: ${{ jobs.setup-variables.outputs.hostname }}
+      git-sha:
+        description: 'Short version of current git sha'
+        value: ${{ jobs.setup-variables.outputs.git-sha }}
+
+jobs:
+  setup-variables:
+    runs-on: ubuntu-latest
+    outputs:
+      github-env:  ${{ steps.resolved.outputs.github-env }}
+      url:         ${{ steps.resolved.outputs.url }}
+      hostname:    ${{ steps.resolved.outputs.hostname }}
+      git-sha:     ${{ steps.resolved.outputs.git-sha }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Save git sha
+        run: echo "git-sha=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+      
+      - name: Set Production variables.
+        id: is-prod
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "github-env=production" >> $GITHUB_ENV
+          echo "hostname=${{ env.prod-domain }}" >> $GITHUB_ENV
+          echo "url=${{ format(env.url-format, env.prod-domain) }}" >> $GITHUB_ENV
+      
+      - name: Set Staging variables.
+        id: is-staging
+        if: github.ref == 'refs/heads/staging'
+        run: |
+          echo "github-env=staging" >> $GITHUB_ENV
+          echo "hostname=${{ env.staging-domain }}" >> $GITHUB_ENV
+          echo "url=${{ format(env.url-format, env.staging-domain) }}" >> $GITHUB_ENV
+      
+      - name: 'OUTPUTS - resolved'
+        id: resolved
+        run: |
+          echo "github-env=${{ env.github-env }}" >> $GITHUB_OUTPUT
+          echo "url=${{ env.url }}" >> $GITHUB_OUTPUT
+          echo "hostname=${{ env.hostname }}" >> $GITHUB_OUTPUT
+          echo "git-sha=${{ env.git-sha }}" >> $GITHUB_OUTPUT
