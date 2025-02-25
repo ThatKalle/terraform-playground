@@ -70,3 +70,12 @@ jobs:
   
       - name: Run TFLint
         run: tflint -f compact
+      
+      - name: Terraform Plan
+        id: terraform_plan
+        run: terraform plan -input=false
+        env:
+          TF_STATE_USERNAME: ${{ github.repository }}
+          TF_STATE_TOKEN:    ${{ secrets.TF_STATE_TOKEN }}
+          GITHUB_TOKEN:      ${{ secrets.TF_GITHUB_TOKEN }}
+          GITHUB_OWNER:      ${{ github.repository_owner }}
