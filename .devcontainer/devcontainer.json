@@ -1,0 +1,47 @@
+{
+	"name": "terraform-playground",
+
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+	"runArgs": [
+		"--cap-drop", "SYS_ADMIN",
+		"--cap-drop", "DAC_OVERRIDE",
+		"--cap-drop", "DAC_READ_SEARCH",
+		"--cap-drop", "SYS_PTRACE"
+	],
+
+	"features": {
+		"ghcr.io/devcontainers/features/terraform:1": {
+			"version": "latest",
+			"tflint": "latest",
+			"terragrunt": "none"
+		},
+		"ghcr.io/devcontainers-extra/features/tfsec:1": {
+			"version": "latest"
+		}
+	},
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"GitHub.vscode-github-actions",
+				"HashiCorp.terraform",
+				"-ms-azuretools.vscode-azureterraform",
+				"-tfsec.tfsec"
+			],
+			"settings": {
+				"files.associations": {
+					"**.hcl": "terraform"
+				},
+				"extensions.ignoreRecommendations": true
+			}
+		}
+	},
+
+	"postCreateCommand": "bash .devcontainer/postCreateCommand.sh",
+	
+	"postStartCommand": "bash .devcontainer/postStartCommand.sh"
+}
