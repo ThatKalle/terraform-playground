@@ -36,7 +36,7 @@ import {
   id = local.staging_repo_name
 }
 
-import {
-  to = github_branch.test_main
-  id = "${local.staging_repo_name}:main"
-}
+# import {
+#   to = github_branch.test_main
+#   id = "${local.staging_repo_name}:main"
+# }
