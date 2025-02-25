@@ -45,11 +45,11 @@ jobs:
         env:
           TF_STATE_TOKEN: ${{ secrets.TF_STATE_TOKEN }}
 
-      # - name: Terraform Plan
-      #   id: terraform_plan
-      #   run: terraform plan -input=false
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.TF_GITHUB_TOKEN }}
+      - name: Terraform Plan
+        id: terraform_plan
+        run: terraform plan -input=false
+        env:
+          GITHUB_TOKEN: ${{ secrets.TF_GITHUB_TOKEN }}
 
       - name: Terraform Apply
         id: terraform_Apply
