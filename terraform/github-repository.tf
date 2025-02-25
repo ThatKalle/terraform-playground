@@ -8,6 +8,7 @@ resource "github_repository" "this" {
   has_issues           = false
   has_wiki             = false
   has_projects         = false
+  has_downloads        = false
   vulnerability_alerts = true
 
   pages {
