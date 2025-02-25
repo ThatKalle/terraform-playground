@@ -1,7 +1,7 @@
 resource "github_repository" "this" {
   name         = "terraform-playground"
   description  = "Terraform testing grounds"
-  homepage_url = "https://terraform-playground.kallelilja.com"
+  homepage_url = "https://thatkalle.github.io/terraform-playground"
   #tfsec:ignore:github-repositories-private
   visibility = "public"
 
@@ -19,7 +19,7 @@ resource "github_repository" "this" {
 
   pages {
     build_type = "workflow"
-    cname      = "terraform-playground.kallelilja.com"
+    cname      = ""
   }
 
   security_and_analysis {
