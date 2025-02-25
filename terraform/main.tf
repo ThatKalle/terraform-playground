@@ -12,7 +12,7 @@ terraform {
 provider "github" {}
 
 locals {
-  staging_repo_name = "terraform-playground-test3"
+  staging_repo_name = "terraform-playground-test4"
 }
 
 import {

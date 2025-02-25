@@ -44,7 +44,7 @@ resource "github_repository_topics" "repository_topics" {
 
 resource "github_repository" "test" {
   name         = local.staging_repo_name
-  description  = "TEST"
+  description  = "${local.staging_repo_name} description"
   homepage_url = "https://thatkalle.github.io/${local.staging_repo_name}"
   #tfsec:ignore:github-repositories-private
   visibility = "public"
