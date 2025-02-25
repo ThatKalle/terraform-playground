@@ -11,6 +11,10 @@ terraform {
 
 provider "github" {}
 
+locals {
+  staging_repo_name = "terraform-playground-test3"
+}
+
 import {
   to = github_repository.this
   id = "terraform-playground"
@@ -29,10 +33,10 @@ import {
 
 import {
   to = github_repository.test
-  id = "terraform-playground-test-rename"
+  id = local.staging_repo_name
 }
 
 import {
   to = github_branch.test_main
-  id = "terraform-playground-test:main"
+  id = "${local.staging_repo_name}:main"
 }

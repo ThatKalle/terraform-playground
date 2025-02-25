@@ -37,9 +37,9 @@ resource "github_repository_topics" "repository_topics" {
 
 
 resource "github_repository" "test" {
-  name         = "terraform-playground-test-rename"
+  name         = local.staging_repo_name
   description  = "TEST"
-  homepage_url = "https://thatkalle.github.io/terraform-playground-test"
+  homepage_url = "https://thatkalle.github.io/${local.staging_repo_name}"
   #tfsec:ignore:github-repositories-private
   visibility = "public"
 
@@ -48,6 +48,8 @@ resource "github_repository" "test" {
   has_projects         = false
   has_downloads        = false
   vulnerability_alerts = true
+
+  auto_init = true
 
   pages {
     build_type = "legacy"
