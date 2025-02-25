@@ -45,11 +45,11 @@ jobs:
       
       - name: Terraform Validate
         id: terraform_validate
-        run: terraform validate -no-color -no-tests
+        run: terraform validate -no-tests
 
       - name: Terraform fmt -check
         id: terraform_fmt
-        run: terraform fmt -check -recursive -no-color
+        run: terraform fmt -check -recursive
 
       - uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4.2.1
         name: Cache TFLint plugins dir
