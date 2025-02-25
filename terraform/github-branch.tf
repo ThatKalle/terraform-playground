@@ -7,10 +7,10 @@ resource "github_branch" "main" {
   }
 }
 
-resource "github_branch" "staging" {
-  repository = github_repository.this.name
-  branch     = "staging"
-}
+# resource "github_branch" "staging" {
+#   repository = github_repository.this.name
+#   branch     = "staging"
+# }
 
 resource "github_branch_default" "default" {
   repository = github_repository.this.name
