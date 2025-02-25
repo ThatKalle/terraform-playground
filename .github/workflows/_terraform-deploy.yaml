@@ -54,5 +54,4 @@ jobs:
         if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging') || (github.event_name == 'workflow_dispatch' && github.event.inputs.do-apply == 'true')
         run: terraform apply -auto-approve -input=false
         env:
-          GITHUB_TOKEN:      ${{ secrets.TF_GITHUB_TOKEN }}
-          TF_VAR_hostname:   ${{ inputs.hostname }}
+          GITHUB_TOKEN: ${{ secrets.TF_GITHUB_TOKEN }}
