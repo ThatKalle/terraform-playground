@@ -37,7 +37,7 @@ resource "github_repository_topics" "repository_topics" {
 
 
 resource "github_repository" "test" {
-  name         = "terraform-playground-test"
+  name         = "terraform-playground-test-rename"
   description  = "TEST"
   homepage_url = "https://thatkalle.github.io/terraform-playground-test"
   #tfsec:ignore:github-repositories-private
