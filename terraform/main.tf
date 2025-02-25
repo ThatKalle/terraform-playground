@@ -11,17 +11,21 @@ terraform {
 
 provider "github" {}
 
-import {
-  to = github_repository.this
-  id = "terraform-playground"
+data "github_repository" "test" {
+  full_name = "ThatKalle/terraform-playground"
 }
 
-import {
-  to = github_branch.main
-  id = "terraform-playground:main"
-}
+# import {
+#   to = github_repository.this
+#   id = "terraform-playground"
+# }
 
-import {
-  to = github_repository_environment.production
-  id = "terraform-playground:production"
-}
+# import {
+#   to = github_branch.main
+#   id = "terraform-playground:main"
+# }
+
+# import {
+#   to = github_repository_environment.production
+#   id = "terraform-playground:production"
+# }
