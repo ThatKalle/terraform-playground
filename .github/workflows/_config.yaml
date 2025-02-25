@@ -1,11 +1,11 @@
 name: _config
 
 env:
-  prod-domain:  terraform-playground.kallelilja.com
+  prod-domain:  thatkalle.github.io/terraform-playground
   prod-branch:  'refs/heads/main'
 
-  staging-domain:  staging.terraform-playground.kallelilja.com
-  staging-branch:  'refs/heads/staging'
+  # staging-domain:  terraform-playground.kallelilja.com/staging/
+  # staging-branch:  'refs/heads/staging'
 
   url-format:  'https://{0}/'
 
@@ -24,6 +24,10 @@ on:
       git-sha:
         description: 'Short version of current git sha'
         value: ${{ jobs.setup-variables.outputs.git-sha }}
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   setup-variables:
@@ -49,13 +53,13 @@ jobs:
           echo "hostname=${{ env.prod-domain }}" >> $GITHUB_ENV
           echo "url=${{ format(env.url-format, env.prod-domain) }}" >> $GITHUB_ENV
       
-      - name: Set Staging variables.
-        id: is-staging
-        if: github.ref == 'refs/heads/staging'
-        run: |
-          echo "github-env=staging" >> $GITHUB_ENV
-          echo "hostname=${{ env.staging-domain }}" >> $GITHUB_ENV
-          echo "url=${{ format(env.url-format, env.staging-domain) }}" >> $GITHUB_ENV
+      # - name: Set Staging variables.
+      #   id: is-staging
+      #   if: github.ref == 'refs/heads/staging'
+      #   run: |
+      #     echo "github-env=staging" >> $GITHUB_ENV
+      #     echo "hostname=${{ env.staging-domain }}" >> $GITHUB_ENV
+      #     echo "url=${{ format(env.url-format, env.staging-domain) }}" >> $GITHUB_ENV
       
       - name: 'OUTPUTS - resolved'
         id: resolved

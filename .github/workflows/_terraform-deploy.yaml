@@ -28,6 +28,7 @@ jobs:
 
     defaults:
       run:
+        shell: bash
         working-directory: terraform
     
     steps:

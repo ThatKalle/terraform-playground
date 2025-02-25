@@ -19,23 +19,23 @@ resource "github_repository_deployment_branch_policy" "production" {
   ]
 }
 
-resource "github_repository_environment" "staging" {
-  environment       = "staging"
-  repository        = github_repository.this.name
-  can_admins_bypass = true
+# resource "github_repository_environment" "staging" {
+#   environment       = "staging"
+#   repository        = github_repository.this.name
+#   can_admins_bypass = true
 
-  deployment_branch_policy {
-    protected_branches     = false
-    custom_branch_policies = true
-  }
-}
+#   deployment_branch_policy {
+#     protected_branches     = false
+#     custom_branch_policies = true
+#   }
+# }
 
-resource "github_repository_deployment_branch_policy" "staging" {
-  repository       = github_repository.this.name
-  environment_name = github_repository_environment.staging.environment
-  name             = "staging"
+# resource "github_repository_deployment_branch_policy" "staging" {
+#   repository       = github_repository.this.name
+#   environment_name = github_repository_environment.staging.environment
+#   name             = "staging"
 
-  depends_on = [
-    github_repository_environment.staging
-  ]
-}
+#   depends_on = [
+#     github_repository_environment.staging
+#   ]
+# }
