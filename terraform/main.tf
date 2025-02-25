@@ -4,16 +4,24 @@ terraform {
       source  = "integrations/github"
       version = "~> 6.0"
     }
-    random = {
-      source  = "hashicorp/random"
-      version = "3.7.0-alpha1"
-    }
   }
 
   required_version = "~> 1.10.0"
 }
 
-provider "random" {}
+provider "github" {}
 
-resource "random_uuid" "test" {
+import {
+  to = github_repository.this
+  id = "terraform-playground"
+}
+
+import {
+  to = github_branch.main
+  id = "terraform-playground:main"
+}
+
+import {
+  to = github_repository_environment.production
+  id = "terraform-playground:production"
 }
