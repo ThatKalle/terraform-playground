@@ -14,6 +14,7 @@ resource "github_repository" "this" {
   allow_merge_commit = true
   allow_rebase_merge = true
   allow_squash_merge = true
+  allow_auto_merge   = false
 
   auto_init = false
 
