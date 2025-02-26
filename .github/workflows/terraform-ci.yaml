@@ -78,6 +78,13 @@ jobs:
           additional_args: --ignore-hcl-errors
           github_token: ${{ github.token }}
 
+      - name: Run Trivy vulnerability scanner in IaC mode
+        uses: aquasecurity/trivy-action@18f2510ee396bbf400402947b394f2dd8c87dbb0 # v0.29.0
+        with:
+          scan-type: 'config'
+          hide-progress: true
+          exit-code: '1'
+
       - name: Terraform Plan
         id: terraform_plan
         run: terraform plan -input=false

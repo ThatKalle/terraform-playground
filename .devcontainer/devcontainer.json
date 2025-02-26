@@ -22,7 +22,7 @@
 			"tflint": "latest",
 			"terragrunt": "none"
 		},
-		"ghcr.io/devcontainers-extra/features/tfsec:1": {
+		"ghcr.io/dhoeric/features/trivy:1": {
 			"version": "latest"
 		}
 	},
