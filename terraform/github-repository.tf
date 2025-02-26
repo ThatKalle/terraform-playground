@@ -44,5 +44,5 @@ resource "github_repository" "this" {
 
 resource "github_repository_topics" "repository_topics" {
   repository = github_repository.this.name
-  topics     = ["devcontainer", "terraformed"]
+  topics     = ["devcontainer", "terraformed", "testing"]
 }
