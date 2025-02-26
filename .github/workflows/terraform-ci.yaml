@@ -62,6 +62,8 @@ jobs:
         name: Setup TFLint
         with:
           tflint_version: v0.55.1
+          checksums: |-
+            53379f38bc1e86c18885bfc85dc5fe2cd1f59729ae9a2afa16905189c1d67aa9
   
       - name: Init TFLint
         run: tflint --init
