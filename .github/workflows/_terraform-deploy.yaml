@@ -15,9 +15,6 @@ on:
       git-sha:
         required: true
         type: string
-      do-apply:
-        required: true
-        type: boolean
     secrets:
       TF_STATE_TOKEN:
         required: true
@@ -60,7 +57,7 @@ jobs:
 
       - name: Terraform Apply
         id: terraform_Apply
-        if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging') || (github.event_name == 'workflow_dispatch' && inputs.do-apply == 'true')
+        if: (github.ref == 'refs/heads/main' && github.event_name == 'push') || (github.event_name == 'workflow_dispatch' && github.event.inputs.do-apply == 'true')
         run: terraform apply -auto-approve -input=false
         env:
           GITHUB_TOKEN: ${{ secrets.TF_GITHUB_TOKEN }}
