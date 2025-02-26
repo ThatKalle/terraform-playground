@@ -9,6 +9,8 @@
   {{ $section := where $.Site.RegularPages "Section" "in" $mainSections }}
   {{ $section_count := len $section }}
 
+  {{ printf "%s" site.Params.does_not_exist }}
+
   {{ if and ($show_recent_posts) (ge $section_count 1) }}
     <div class="pa3 pa4-ns w-100 w-70-ns center">
       {{ $n_posts := $.Param "recent_posts_number" | default 3 }}
