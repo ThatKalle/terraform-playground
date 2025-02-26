@@ -49,8 +49,6 @@ jobs:
           HUGO_MINIFY_TDEWOLFF_HTML_KEEPCOMMENTS: true
           
       - name: Audit Hugo site (hugo-audit.log)
-        # run: |
-        #   if ! grep -iIrnE '<\!-- raw HTML omitted -->|ZgotmplZ|hahahugo|\[i18n\]|\(<nil>\)|\(&lt;nil&gt;\)' ${OUTPUT_DIRECTORY} >hugo-audit.log; then RET=$?; fi; if test "$RET" = "2"; then echo "not ok"; exit 1; fi
         run: |
           if ! grep -iIrnE '<\!-- raw HTML omitted -->|ZgotmplZ|hahahugo|\[i18n\]|\(<nil>\)|\(&lt;nil&gt;\)' ${OUTPUT_DIRECTORY} >hugo-audit.log; then RET=$?; fi
           if test "$RET" = "2"; then
@@ -62,8 +60,6 @@ jobs:
       
       - name: Audit Hugo site (hugo-audit.log)
         id: audit
-        # run: |
-        #   if test -s hugo-audit.log; then RET2=2; { { grep -iIvE 'grep(.+(-- raw HTML omitted --|ZgotmplZ|hahahugo|\\\[i18n\\\]|\\\(<nil>\\\)|\\\(&lt;nil&gt;\\\))+)' hugo-audit.log; RET2=$?; } || true; }; if test "$RET2" != "1"; then echo "not ok"; exit 1; fi; else echo "ok"; exit 0; fi
         run: |
           if test -s hugo-audit.log; then
             RET2=2
