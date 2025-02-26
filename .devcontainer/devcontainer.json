@@ -58,6 +58,11 @@
 				"[terraform]": {
 					"editor.formatOnSave": true,
 					"editor.defaultFormatter": "hashicorp.terraform"
+				},
+				"[github-actions-workflow]": {
+					"editor.tabSize": 2,
+					"editor.insertSpaces": true,
+					"editor.detectIndentation": false
 				}
 			}
 		}
