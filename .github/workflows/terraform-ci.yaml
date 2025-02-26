@@ -96,3 +96,5 @@ jobs:
           github_token: ${{ github.token }}
           working_directory: terraform
           tfsec_args: --ignore-hcl-errors
+        env:
+          INPUT_WORKING_DIRECTORY: ${{ github.workspace }}/terraform
