@@ -2,7 +2,7 @@ resource "github_repository" "this" {
   name         = "terraform-playground"
   description  = "Terraform testing grounds"
   homepage_url = "https://thatkalle.github.io/terraform-playground"
-  visibility   = "public"
+  visibility   = "public" #trivy:ignore:AVD-GIT-0001
 
   has_issues           = false
   has_wiki             = false
