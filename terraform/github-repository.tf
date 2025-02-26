@@ -33,6 +33,12 @@ resource "github_repository" "this" {
 
   lifecycle {
     prevent_destroy = true
+    ignore_changes = [
+      merge_commit_message,
+      merge_commit_title,
+      squash_merge_commit_message,
+      squash_merge_commit_title,
+    ]
   }
 }
 
