@@ -81,10 +81,11 @@ jobs:
           cache: true
           version: ${{ steps.trivy_version.outputs.TRIVY_VERSION }}
 
-      - name: Run Trivy vulnerability scanner in IaC mode
+      - name: Run Trivy vulnerability scanner in Terraform IaC mode
         uses: aquasecurity/trivy-action@18f2510ee396bbf400402947b394f2dd8c87dbb0 # v0.29.0
         with:
           scan-type: 'config'
+          scanners: 'terraform'
           hide-progress: true
           exit-code: '1'
           skip-setup-trivy: true
