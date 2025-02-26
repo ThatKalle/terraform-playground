@@ -71,12 +71,29 @@ jobs:
       - name: Run TFLint
         run: tflint -f compact
 
+      - name: Set Trivy Version
+        id: trivy_version
+        run: echo "TRIVY_VERSION=v0.59.1" >> $GITHUB_OUTPUT
+
+      - name: Cache Trivy binary
+        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4.2.1
+        with:
+          path: "${$HOME}/.local/bin/trivy-bin"
+          key: trivy-binary-${{ steps.trivy_version.outputs.TRIVY_VERSION }}-${{ runner.os }}-${{ runner.arch }} ${{ github.workspace.HOME }}
+
+      - name: Setup Trivy vulnerability scanner
+        uses: aquasecurity/setup-trivy@ff1b8b060f23b650436d419b5e13f67f5d4c3087 # v0.2.2
+        with:
+          cache: false
+          version: ${{ steps.trivy_version.outputs.TRIVY_VERSION }}
+
       - name: Run Trivy vulnerability scanner in IaC mode
         uses: aquasecurity/trivy-action@18f2510ee396bbf400402947b394f2dd8c87dbb0 # v0.29.0
         with:
           scan-type: 'config'
           hide-progress: true
           exit-code: '1'
+          skip-setup-trivy: true
 
       - name: Terraform Plan
         id: terraform_plan
