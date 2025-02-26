@@ -39,6 +39,7 @@ jobs:
       url:                ${{ needs.config.outputs.url }}
       hostname:           ${{ needs.config.outputs.hostname }}
       git-sha:            ${{ needs.config.outputs.git-sha }}
+      do-apply:           ${{ github.event.inputs.do-apply }}
     secrets:
       TF_STATE_TOKEN:     ${{ secrets.TF_STATE_TOKEN }}
       TF_GITHUB_TOKEN:    ${{ secrets.TF_GITHUB_TOKEN }}
