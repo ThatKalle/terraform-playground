@@ -2,8 +2,7 @@ resource "github_repository" "this" {
   name         = "terraform-playground"
   description  = "Terraform testing grounds"
   homepage_url = "https://thatkalle.github.io/terraform-playground"
-  #tfsec:ignore:github-repositories-private
-  visibility = "public"
+  visibility   = "public"
 
   has_issues           = false
   has_wiki             = false

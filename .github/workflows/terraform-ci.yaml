@@ -71,13 +71,6 @@ jobs:
       - name: Run TFLint
         run: tflint -f compact
 
-      - name: Run tfsec
-        uses: aquasecurity/tfsec-action@b466648d6e39e7c75324f25d83891162a721f2d6 # v1.0.3
-        with:
-          working_directory: terraform
-          additional_args: --ignore-hcl-errors
-          github_token: ${{ github.token }}
-
       - name: Run Trivy vulnerability scanner in IaC mode
         uses: aquasecurity/trivy-action@18f2510ee396bbf400402947b394f2dd8c87dbb0 # v0.29.0
         with:
