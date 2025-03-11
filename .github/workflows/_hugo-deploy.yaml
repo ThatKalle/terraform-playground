@@ -59,11 +59,12 @@ jobs:
             --gc \
             --minify \
             --enableGitInfo \
-            --baseURL "${{ inputs.url }}"
+            --baseURL "$URL"
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
           TZ: Europe/Stockholm
+          URL: ${{ inputs.url }}
           HUGO_PARAMS_gitCommit: ${{ inputs.git-sha }}
       
       - name: Upload artifact
