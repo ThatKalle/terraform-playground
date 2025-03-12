@@ -3,6 +3,10 @@ resource "github_repository_environment" "production" {
   repository        = github_repository.this.name
   can_admins_bypass = true
 
+  reviewers {
+    users = [data.github_user.thatkalle.id]
+  }
+
   deployment_branch_policy {
     protected_branches     = false
     custom_branch_policies = true
