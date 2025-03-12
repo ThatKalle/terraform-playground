@@ -10,10 +10,11 @@ resource "github_repository" "this" {
   has_downloads        = false
   vulnerability_alerts = true
 
-  allow_merge_commit = true
-  allow_rebase_merge = true
-  allow_squash_merge = true
-  allow_auto_merge   = false
+  allow_merge_commit          = true
+  allow_rebase_merge          = true
+  allow_squash_merge          = true
+  allow_auto_merge            = false
+  web_commit_signoff_required = true
 
   auto_init = false
 
