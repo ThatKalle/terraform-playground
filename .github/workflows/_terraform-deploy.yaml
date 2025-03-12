@@ -27,7 +27,8 @@ permissions:
 jobs:
   terraform-apply:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    environment:
+      name: ${{ inputs.environment }}
 
     defaults:
       run:
