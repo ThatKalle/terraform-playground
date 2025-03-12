@@ -53,7 +53,7 @@ jobs:
           
       - name: Audit Hugo site (step 1)
         run: |
-          if ! grep -iIrnE '<\!-- raw HTML omitted -->|ZgotmplZ|hahahugo|\[i18n\]|\(<nil>\)|\(&lt;nil&gt;\)' ${OUTPUT_DIRECTORY} > hugo-audit.log; then
+          if ! grep -iIrnE '<\!-- raw HTML omitted -->|ZgotmplZ|hahahugo|\[i18n\]|\(<nil>\)|\(&lt;nil&gt;\)' ${OUTPUT_DIRECTORY} > "$OUTPUT_DIRECTORY"/hugo-audit.log; then
             RET=$?
           fi
           if test "$RET" = "2"; then
@@ -69,7 +69,7 @@ jobs:
           if test -s hugo-audit.log; then
             RET2=2
             { {
-              grep -iIvE 'grep(.+(-- raw HTML omitted --|ZgotmplZ|hahahugo|\\\[i18n\\\]|\\\(<nil>\\\)|\\\(&lt;nil&gt;\\\))+)' hugo-audit.log
+              grep -iIvE 'grep(.+(-- raw HTML omitted --|ZgotmplZ|hahahugo|\\\[i18n\\\]|\\\(<nil>\\\)|\\\(&lt;nil&gt;\\\))+)' "$OUTPUT_DIRECTORY"/hugo-audit.log
               RET2=$?
             } || true; }
             if test "$RET2" != "1"; then
@@ -80,6 +80,8 @@ jobs:
             echo "ok"
             exit 0
           fi
+        env:
+          OUTPUT_DIRECTORY: "audit/"
 
       - name: Upload Audit artifact
         if: failure() && steps.audit.conclusion == 'failure'
