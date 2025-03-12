@@ -36,10 +36,13 @@ jobs:
       - name: Build Hugo site for audit
         run: |
           hugo \
-           --destination "${OUTPUT_DIRECTORY}"
+           --destination "${OUTPUT_DIRECTORY}" \
            --gc \
-           --cleanDestinationDir && grep -inorE "<\!-- raw HTML omitted -->|ZgotmplZ|\[i18n\]|\(\)|(<nil>)|hahahugo" "${OUTPUT_DIRECTORY}"
-          if [ ! -s "$OUTPUT_DIRECTORY"/index.html ]; then echo "Missing output"; exit 1; fi
+           --cleanDestinationDir
+          if [ ! -s "$OUTPUT_DIRECTORY"/index.html ]; then
+            echo "Missing output"
+            exit 1
+          fi
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
@@ -48,9 +51,11 @@ jobs:
           HUGO_ENABLEMISSINGTRANSLATIONPLACEHOLDERS: true
           HUGO_MINIFY_TDEWOLFF_HTML_KEEPCOMMENTS: true
           
-      - name: Audit Hugo site (hugo-audit.log)
+      - name: Audit Hugo site (step 1)
         run: |
-          if ! grep -iIrnE '<\!-- raw HTML omitted -->|ZgotmplZ|hahahugo|\[i18n\]|\(<nil>\)|\(&lt;nil&gt;\)' ${OUTPUT_DIRECTORY} >hugo-audit.log; then RET=$?; fi
+          if ! grep -iIrnE '<\!-- raw HTML omitted -->|ZgotmplZ|hahahugo|\[i18n\]|\(<nil>\)|\(&lt;nil&gt;\)' ${OUTPUT_DIRECTORY} > hugo-audit.log; then
+            RET=$?
+          fi
           if test "$RET" = "2"; then
             echo "not ok"
             exit 1
@@ -58,7 +63,7 @@ jobs:
         env:
           OUTPUT_DIRECTORY: "audit/"
       
-      - name: Audit Hugo site (hugo-audit.log)
+      - name: Audit Hugo site (step 2)
         id: audit
         run: |
           if test -s hugo-audit.log; then
@@ -75,8 +80,6 @@ jobs:
             echo "ok"
             exit 0
           fi
-        env:
-          OUTPUT_DIRECTORY: "audit/"
 
       - name: Upload Audit artifact
         if: failure() && steps.audit.conclusion == 'failure'
