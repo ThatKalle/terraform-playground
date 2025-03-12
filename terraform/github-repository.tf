@@ -45,5 +45,29 @@ resource "github_repository" "this" {
 
 resource "github_repository_topics" "repository_topics" {
   repository = github_repository.this.name
-  topics     = ["devcontainer", "terraformed", "testing"]
+  topics = [
+    "devcontainer",
+    "terraformed",
+    "hugo",
+    "testing"
+  ]
+}
+
+resource "github_actions_repository_permissions" "this" {
+  repository = github_repository.this.name
+  enabled    = true
+
+  allowed_actions = "selected"
+
+  allowed_actions_config {
+    github_owned_allowed = true
+    verified_allowed     = false
+    patterns_allowed = [
+      "hashicorp/setup-terraform@*",
+      "terraform-linters/setup-tflint@*",
+      "aquasecurity/setup-trivy@*",
+      "aquasecurity/trivy-action@*",
+      "peaceiris/actions-hugo@*"
+    ]
+  }
 }
