@@ -16,6 +16,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     wget \
     zip \
     && wget -O - https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | tar xzf - -C /usr/local/bin \
+    && wget -O - https://github.com/suzuki-shunsuke/tfprovidercheck/releases/download/v1.0.2/tfprovidercheck_linux_amd64.tar.gz | tar xzf - -C /usr/local/bin \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 USER vscode
