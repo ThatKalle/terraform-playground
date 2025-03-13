@@ -1,4 +1,4 @@
-resource "github_repository" "this" {
+resource "github_repository" "terraform_playground" {
   name         = "terraform-playground"
   description  = "Terraform testing grounds"
   homepage_url = "https://thatkalle.github.io/terraform-playground"
@@ -44,7 +44,7 @@ resource "github_repository" "this" {
 }
 
 resource "github_repository_topics" "repository_topics" {
-  repository = github_repository.this.name
+  repository = github_repository.terraform_playground.name
   topics = [
     "devcontainer",
     "terraformed",
@@ -53,8 +53,8 @@ resource "github_repository_topics" "repository_topics" {
   ]
 }
 
-resource "github_actions_repository_permissions" "this" {
-  repository = github_repository.this.name
+resource "github_actions_repository_permissions" "terraform_playground" {
+  repository = github_repository.terraform_playground.name
   enabled    = true
 
   allowed_actions = "selected"
