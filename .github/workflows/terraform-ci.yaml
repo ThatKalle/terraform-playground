@@ -107,3 +107,10 @@ jobs:
         run: terraform plan -input=false
         env:
           GITHUB_TOKEN: ${{ secrets.TF_GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "Terraform Plan: ${{ steps.terraform_plan.outcome }}" >> $GITHUB_STEP_SUMMARY
+          echo "test: ${process.env.PLAN}" >> $GITHUB_STEP_SUMMARY
+        env:
+          plan: "terraform\n${{ steps.terraform_plan.outputs.stdout }}"
