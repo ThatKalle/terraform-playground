@@ -111,7 +111,7 @@ jobs:
       - name: Summary
         run: |
           echo "Terraform Plan: ${{ steps.terraform_plan.outcome }}" >> $GITHUB_STEP_SUMMARY
-          echo "Plan: ${process.env.PLAN}" >> $GITHUB_STEP_SUMMARY
+          echo "Plan: $PLAN" >> $GITHUB_STEP_SUMMARY
           echo "test: ${{ steps.terraform_plan.outputs.stdout }}" >> $GITHUB_STEP_SUMMARY
         env:
           PLAN: "terraform\n${{ steps.terraform_plan.outputs.stdout }}"
