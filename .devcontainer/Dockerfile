@@ -1,7 +1,11 @@
 FROM mcr.microsoft.com/devcontainers/base:bookworm
 
-ENV DOCKERIZE_VERSION=v0.9.2
-
+ARG DOCKERIZE_VERSION
+ARG DOCKERIZE_CHECKSUM
+ENV DOCKERIZE_URL="https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-linux-amd64-${DOCKERIZE_VERSION}.tar.gz"
+ARG TFPROVIDERCHECK_VERSION
+ARG TFPROVIDERCHECK_CHECKSUM
+ENV TFPROVIDERCHECK_URL="https://github.com/suzuki-shunsuke/tfprovidercheck/releases/download/${TFPROVIDERCHECK_VERSION}/tfprovidercheck_linux_amd64.tar.gz"
 ENV HUGO_PARAMS_gitCommit="d3m0sh4"
 
 USER root
@@ -9,15 +13,26 @@ USER root
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
     ca-certificates \
+    coreutils \
     curl \
     git \
     gnupg2 \
     gpg  \
     wget \
     zip \
-    && wget -O - https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | tar xzf - -C /usr/local/bin \
-    && wget -O - https://github.com/suzuki-shunsuke/tfprovidercheck/releases/download/v1.0.2/tfprovidercheck_linux_amd64.tar.gz | tar xzf - -C /usr/local/bin \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    # Download and verify dockerize
+    && curl -L -o dockerize.tar.gz ${DOCKERIZE_URL} \
+    && echo "${DOCKERIZE_CHECKSUM}  dockerize.tar.gz" > dockerize.tar.gz.sha256 \
+    && sha256sum -c dockerize.tar.gz.sha256 \
+    && tar -xzf dockerize.tar.gz -C /usr/local/bin \
+    && rm dockerize.tar.gz dockerize.tar.gz.sha256 \
+    # Download and verify tfprovidercheck
+    && curl -L -o tfprovidercheck.tar.gz ${TFPROVIDERCHECK_URL} \
+    && echo "${TFPROVIDERCHECK_CHECKSUM}  tfprovidercheck.tar.gz" > tfprovidercheck.tar.gz.sha256 \
+    && sha256sum -c tfprovidercheck.tar.gz.sha256 \
+    && tar -xzf tfprovidercheck.tar.gz -C /usr/local/bin \
+    && rm tfprovidercheck.tar.gz tfprovidercheck.tar.gz.sha256
 
 USER vscode
 
