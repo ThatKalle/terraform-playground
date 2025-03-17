@@ -81,8 +81,13 @@
 					".devcontainer",
 					"web/nohup.out"
 				],
-				"cSpell.ignoreWords": [
-					"ananke"
+				"cSpell.words": [
+					"ananke",
+					"thatkalle",
+					"kalle"
+				],
+				"cSpell.flagWords": [
+					"terrafrom"
 				]
 			}
 		}
