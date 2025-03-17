@@ -53,6 +53,7 @@
 				"kaellarkin.hugo-shortcode-syntax",
 				"tamasfe.even-better-toml",
 				"davidanson.vscode-markdownlint",
+				"streetsidesoftware.code-spell-checker",
 				"-ms-azuretools.vscode-azureterraform",
 				"-tfsec.tfsec"
 			],
@@ -69,7 +70,20 @@
 					"editor.tabSize": 2,
 					"editor.insertSpaces": true,
 					"editor.detectIndentation": false
-				}
+				},
+				"cSpell.language": "en",
+				"cSpell.ignorePaths": [
+					"vscode-extension",
+					".git/{info,lfs,logs,refs,objects}/**",
+					".git/{index,*refs,*HEAD}",
+					".vscode",
+					".vscode-insiders",
+					".devcontainer",
+					"web/nohup.out"
+				],
+				"cSpell.ignoreWords": [
+					"ananke"
+				]
 			}
 		}
 	},
