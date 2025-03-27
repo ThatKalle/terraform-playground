@@ -1,6 +1,17 @@
+# Managed by Terraform
 version: 2
 updates:
-  - package-ecosystem: ""
-    directory: "/"
+  - package-ecosystem: "devcontainers"
+    directory: "/.devcontainer"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "github-actions"
+    directory: "/.github/workflows"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "terraform"
+    directory: "/terraform"
     schedule:
       interval: "weekly"
