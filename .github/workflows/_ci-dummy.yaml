@@ -1,0 +1,24 @@
+name: ci-dummy
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  terraform-ci:
+    name: 'Terraform CI'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dummy
+        run: exit 0
+
+  hugo-ci:
+    name: 'HUGO CI'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dummy
+        run: exit 0
