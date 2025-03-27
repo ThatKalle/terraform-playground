@@ -77,8 +77,8 @@ resource "github_branch_protection" "branch_protection" {
   required_status_checks {
     strict = false
     contexts = [
-      "ci / Terraform CI",
-      "ci / HUGO CI"
+      "Terraform CI",
+      "HUGO CI"
     ]
   }
 }
