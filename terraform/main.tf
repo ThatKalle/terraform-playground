@@ -89,7 +89,8 @@ resource "github_actions_repository_permissions" "terraform_playground" {
       "terraform-linters/setup-tflint@*",
       "aquasecurity/setup-trivy@*",
       "aquasecurity/trivy-action@*",
-      "peaceiris/actions-hugo@*"
+      "peaceiris/actions-hugo@*",
+      "dependabot/fetch-metadata@*"
     ]
   }
 }
