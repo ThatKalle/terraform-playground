@@ -9,6 +9,8 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "chore(deps)"
 
   - package-ecosystem: "docker"
     directory: "/.devcontainer"
@@ -18,6 +20,8 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "chore(deps)"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -26,6 +30,8 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "chore(deps)"
     groups:
       actions-deps:
         patterns:
@@ -39,6 +45,8 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "chore(deps)"
 
   - package-ecosystem: "npm"
     directory: "/web/themes/ananke"
@@ -47,3 +55,5 @@ updates:
       day: saturday
     ignore:
       - dependency-name: "*"
+    commit-message:
+      prefix: "chore(deps)"
