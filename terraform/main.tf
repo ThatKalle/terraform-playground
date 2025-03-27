@@ -75,7 +75,7 @@ resource "github_branch_protection" "branch_protection" {
   require_signed_commits = true
 
   required_status_checks {
-    strict = false
+    strict = true
     contexts = [
       "Terraform CI",
       "HUGO CI"
