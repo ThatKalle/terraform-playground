@@ -22,7 +22,7 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "npm"
-    directory: "/web/themes/"
+    directory: "/web/themes/ananke"
     schedule:
       interval: "weekly"
     ignore:
