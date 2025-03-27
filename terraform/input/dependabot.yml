@@ -5,11 +5,13 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+      day: saturday
 
   - package-ecosystem: "docker"
     directory: "/.devcontainer"
     schedule:
       interval: "weekly"
+      day: saturday
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -20,10 +22,12 @@ updates:
     directory: "/terraform"
     schedule:
       interval: "weekly"
+      day: saturday
 
   - package-ecosystem: "npm"
     directory: "/web/themes/ananke"
     schedule:
       interval: "weekly"
+      day: saturday
     ignore:
       - dependency-name: "*"
