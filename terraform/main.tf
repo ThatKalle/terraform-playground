@@ -73,6 +73,14 @@ resource "github_branch_protection" "branch_protection" {
   pattern       = "main"
 
   require_signed_commits = true
+
+  required_status_checks {
+    strict = false
+    contexts = [
+      "ci / Terraform CI",
+      "ci / HUGO CI"
+    ]
+  }
 }
 
 resource "github_actions_repository_permissions" "terraform_playground" {
