@@ -26,6 +26,10 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
+    groups:
+      actions-deps:
+        patterns:
+          - "*"
 
   - package-ecosystem: "terraform"
     directory: "/terraform"
