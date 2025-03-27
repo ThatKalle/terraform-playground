@@ -6,14 +6,16 @@ on:
       - main
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   dependabot:
     name: 'Dependabot'
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'ThatKalle/terraform-playground'
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
       - name: Dependabot metadata
@@ -22,7 +24,7 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Enable auto-merge for Dependabot PRs
+      - name: Dependabot merge semver-patch or semver-minor
         if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
         run: gh pr merge --auto --merge "$PR_URL"
         env:
