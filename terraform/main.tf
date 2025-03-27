@@ -125,6 +125,6 @@ resource "github_repository_file" "dependabot_yml" {
   repository          = github_repository.terraform_playground.name
   branch              = github_branch_default.default.branch
   file                = ".github/dependabot.yml"
-  content             = file("${path.module}/dependabot.yml")
+  content             = file("${path.module}/input/dependabot.yml")
   overwrite_on_create = true
 }
