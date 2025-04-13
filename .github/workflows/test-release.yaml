@@ -22,3 +22,10 @@ jobs:
         if: github.event.release.action == 'released'
         run: echo "github.event.release.action == 'released'"
         
+      - name: released action
+        if: github.event.action == 'released'
+        run: echo "github.event.action == 'released'"
+
+      - name: released action
+        if: github.event.action == 'released'
+        run: echo "github.event.action == 'released'"
