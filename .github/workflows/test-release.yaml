@@ -13,4 +13,12 @@ jobs:
           echo "Event name: ${{ github.event_name }}"
           echo "Full event data:"
           echo "${{ toJson(github.event) }}"
-          
+
+      - name: published
+        if: github.event.release.action == 'published'
+        run: echo "github.event.release.action == 'published'"
+
+      - name: released
+        if: github.event.release.action == 'released'
+        run: echo "github.event.release.action == 'released'"
+        
