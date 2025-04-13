@@ -1,0 +1,16 @@
+name: Event Trigger Example
+
+on: 
+  release:
+    types: [published, released]
+
+jobs:
+  print-event:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print the event that triggered the workflow
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Full event data:"
+          echo "${{ toJson(github.event) }}"
+          
