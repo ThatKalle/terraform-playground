@@ -1,0 +1,25 @@
+name: test-target
+
+on:
+  pull_request_target:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: test
+        run: |
+          # run test
+          if [[ "${{ github.head_ref }}" == "" ]]; then
+            echo "1"
+          else
+            echo "2"
+          fi
+          echo "Name: ${{ github.ref_name }} Base: ${{ github.base_ref }} Ref: ${{ github.ref }}"
+  
