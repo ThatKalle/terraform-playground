@@ -29,3 +29,7 @@ jobs:
       - name: released action
         if: github.event.action == 'released'
         run: echo "github.event.action == 'released'"
+
+      - name: html_url
+        run: echo "${{ github.event.release.html_url }}"
+        
