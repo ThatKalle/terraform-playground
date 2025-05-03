@@ -8,12 +8,4 @@ permissions:
 
 jobs:
   dependency-review:
-    name: 'Dependency Review'
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      pull-requests: write
-
-    steps:
-      - uses: ThatKalle/.github/.github/workflows/dependency-review.yaml@main
+    uses: ThatKalle/.github/.github/workflows/dependency-review.yaml@main
