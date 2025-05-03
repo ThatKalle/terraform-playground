@@ -9,6 +9,13 @@ permissions:
   contents: read
 
 jobs:
+  dependency-review:
+    name: 'Dependency Review'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dummy
+        run: exit 0
+
   terraform-ci:
     name: 'Terraform CI'
     runs-on: ubuntu-latest
