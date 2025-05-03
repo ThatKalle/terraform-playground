@@ -8,4 +8,8 @@ permissions:
 
 jobs:
   dependency-review:
+    permissions:
+      contents: read
+      pull-requests: write
+
     uses: ThatKalle/.github/.github/workflows/dependency-review.yaml@main
