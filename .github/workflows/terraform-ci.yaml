@@ -79,7 +79,7 @@ jobs:
         run: echo "TRIVY_VERSION=v0.60.0" >> $GITHUB_OUTPUT
 
       - name: Setup Trivy vulnerability scanner
-        uses: aquasecurity/setup-trivy@9ea583eb67910444b1f64abf338bd2e105a0a93d # v0.2.3
+        uses: aquasecurity/setup-trivy@e6c2c5e321ed9123bda567646e2f96565e34abe1 # v0.2.4
         with:
           cache: true
           version: ${{ steps.trivy_version.outputs.TRIVY_VERSION }}
